@@ -5,6 +5,7 @@ mcLabStatus = new Mongo.Collection("lab_status");
 
 if (Meteor.isClient) {
   Meteor.subscribe('rittal');
+  
 
   Template.steckdosen.helpers({
       rittal: function() {
