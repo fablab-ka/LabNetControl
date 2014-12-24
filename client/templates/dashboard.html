@@ -1,0 +1,130 @@
+<template name="dashboard">
+<!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+                        <div class="content-header content-header-media">
+                            <div class="header-section">
+                                <div class="row">
+                                    <!-- Main Title (hidden on small devices for the statistics to fit) -->
+                                    <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
+                                        <h1>Willkommen <strong>{{username}}</strong><br><small>{{spruch}}</small></h1>
+                                    </div>
+                                    <!-- END Main Title -->
+
+                                    <!-- Top Stats -->
+                                    <!--<div class="col-md-8 col-lg-6">
+                                        <div class="row text-center">
+                                            <div class="col-xs-4 col-sm-3">
+                                                <h2 class="animation-hatch">
+                                                    $<strong>93.7k</strong><br>
+                                                    <small><i class="fa fa-thumbs-o-up"></i> Great</small>
+                                                </h2>
+                                            </div>
+                                            <div class="col-xs-4 col-sm-3">
+                                                <h2 class="animation-hatch">
+                                                    <strong>167k</strong><br>
+                                                    <small><i class="fa fa-heart-o"></i> Likes</small>
+                                                </h2>
+                                            </div>
+                                            <div class="col-xs-4 col-sm-3">
+                                                <h2 class="animation-hatch">
+                                                    <strong>101</strong><br>
+                                                    <small><i class="fa fa-calendar-o"></i> Events</small>
+                                                </h2>
+                                            </div>
+                                            <div class="col-sm-3 hidden-xs">
+                                                <h2 class="animation-hatch">
+                                                    <strong>27&deg; C</strong><br>
+                                                    <small><i class="fa fa-map-marker"></i> Sydney</small>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <!-- END Top Stats -->
+                                </div>
+                            </div>
+                            <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
+                            <img src="img/placeholders/headers/dashboard_header.jpg" alt="header image" class="animation-pulseSlow">
+                        </div>
+                        <!-- END Dashboard Header -->
+
+                        <!-- Widgets Row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Notifcations -->
+                                <div class="widget">
+                                    <div class="widget-extra themed-background-dark">
+                                        <h3 class="widget-content-light">
+                                            Wichtige <strong>Mitteilungen</strong>
+                                            <small><a href="page_ready_timeline.html"><strong>Alle anschauen</strong></a></small>
+                                        </h3>
+                                    </div>
+                                    <div class="widget-extra">
+                                        <!-- Timeline Content -->
+                                        <div class="timeline">
+                                            <ul class="timeline-list">
+                                                <li class="active">
+                                                    <div class="timeline-icon themed-background-fire themed-border-fire"><i class="fa fa-file-text"></i></div>
+                                                    <div class="timeline-time"><small>5 min ago</small></div>
+                                                    <div class="timeline-content">
+                                                        <p class="push-bit"><a href="page_ready_user_profile.html"><strong>Wartungsarbeiten</strong></a></p>
+                                                         am 31.12.1999 wird Host01 wegen des Year 2000 Bugs gegen 19 Uhr für 10min nicht erreichbar sein.
+                                                    </div>
+                                                </li>
+                                                <li class="active">
+                                                    <div class="timeline-icon themed-background-fire themed-border-fire"><i class="fa fa-smile-o"></i></div>
+                                                    <div class="timeline-time"><small>2 days ago</small></div>
+                                                    <div class="timeline-content">
+                                                        <p class="push-bit"><a href="page_ready_user_profile.html"><strong>Support</strong></a></p>
+                                                        To thank you all for your support we would like to let you know that you will receive free feature updates for life! You are awesome!
+                                                    </div>
+                                                </li>
+                                                <li class="text-center">
+                                                    <a href="javascript:void(0)" class="btn btn-xs btn-default">mehr...</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- END Timeline Content -->
+                                    </div>
+                                </div>
+                                <!-- END Notifcations -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Your Plan Widget -->
+                                <div class="widget">
+                                    <div class="widget-extra themed-background-dark">
+                                        <h3 class="widget-content-light">
+                                            Packet: <strong>10 Virtual Monkeys</strong>
+                                        </h3>
+                                    </div>
+                                    <div class="widget-extra-full">
+                                        <div class="row text-center">
+                                            <div class="col-xs-6 col-lg-3">
+                                                <h3>
+                                                    <strong>1</strong> <small>x</small><br>
+                                                    <small><i class="fa fa-folder-open-o"></i> CPU</small>
+                                                </h3>
+                                            </div>
+                                            <div class="col-xs-6 col-lg-3">
+                                                <h3>
+                                                    <strong>10</strong> <small>GB</small><br>
+                                                    <small><i class="fa fa-hdd-o"></i> Storage</small>
+                                                </h3>
+                                            </div>
+                                            <div class="col-xs-6 col-lg-3">
+                                                <h3>
+                                                    <strong>4</strong> <small>GB</small><br>
+                                                    <small><i class="fa fa-building-o"></i> RAM</small>
+                                                </h3>
+                                            </div>
+                                            <div class="col-xs-6 col-lg-3">
+                                                <h3>
+                                                    <strong>23</strong> <small>/100GB</small><br>
+                                                    <small><i class="fa fa-envelope-o"></i> Traffic</small>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Your Plan Widget -->
+                            </div>
+                        </div>
+</template>

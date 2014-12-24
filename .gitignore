@@ -1,3 +1,8 @@
+public/css
+public/js
+public/img
+.meteor
+
 # Logs
 logs
 *.log
