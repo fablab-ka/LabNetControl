@@ -1,8 +1,8 @@
 public/css
 public/js
 public/img
-.meteor
 packages
+sftp-config.json
 
 # Logs
 logs

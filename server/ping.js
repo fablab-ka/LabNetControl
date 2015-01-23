@@ -27,15 +27,15 @@ var ping = Meteor.npmRequire("ping");
         var res = fut.wait();
         raw = mcPing.findOne({host:res.host}, {sort: {"date":-1}});
         if(raw["alive"] != res.alive){
-            console.log(raw);
+            //console.log(raw);
             mcPing.insert({host: res.host, alive: res.alive, date: (new Date())}); 
-            console.log("ping coll update");
+            if(res.alive){
+                console.log("host: " + res.host +" is alive");
+            }else{
+                console.log("host: " + res.host +" is dead");
+            }
         }
-        //if(res.alive){
-        //    console.log("host: " + res.host +" is alive");
-        //}else{
-        //    console.log("host: " + res.host +" is dead");
-        //}
+
 	});
 };
 
@@ -45,7 +45,7 @@ Meteor.startup(function () {
     for (i = 1; i < 255; i++) {
         mcPing.insert({host: "192.168.1." + i, alive: false, date: (new Date())});
     }
-    Meteor.setInterval(pingAll, 30000);
+    //Meteor.setInterval(pingAll, 30000);
 });
 
 Meteor.publish("ping", function (){

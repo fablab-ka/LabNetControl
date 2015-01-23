@@ -1,4 +1,4 @@
-<template name="hwSteckdosen">
+<template name="logicMusic">
 <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
                         <div class="content-header">
                             <div class="header-section">
@@ -12,7 +12,6 @@
                             <li>by function</li>
                             <li><a href="{{ pathFor 'steckdosen' }}">Steckdosen</a></li>
                         </ul>
-                        {{#each rittal}}
                         <div class="block full">
                             <!-- Default Style Title -->
                             <div class="block-title">
@@ -20,18 +19,6 @@
                             </div>
                             <!-- END Default Style Title -->
                             <div class="row">
-                                {{#each plugs}}
-                                {{#if name}}
-                                <div class="col-sm-2">
-                                    <div class="block-section text-center">
-                                        <h3>{{#if name}}{{name}}{{else}}unused{{/if}}</h3>
-                                        <button leiste="{{leiste_id}}" plug="{{plug_id}}" class="plug_on btn {{#if status}} btn-on {{else}} btn-default {{/if}}">ON</button>
-                                        <button leiste="{{leiste_id}}" plug="{{plug_id}}" class="plug_off btn {{#unless status}} btn-off {{else}} btn-default {{/unless}}">OFF</button>
-                                    </div>
-                                </div>
-                                {{/if}}
-                                {{/each}}
                             </div>
                         </div>
-                        {{/each}}
 </template>
