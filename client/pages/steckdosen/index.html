@@ -1,5 +1,4 @@
-<template name="hwSteckdosen">
-<!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+<template name="hwSteckdosenPage">
                         <div class="content-header">
                             <div class="header-section">
                                 <h1>
@@ -7,11 +6,6 @@
                                 </h1>
                             </div>
                         </div>
-                        <ul class="breadcrumb breadcrumb-top">
-                            <li><a href="{{ pathFor 'dashboard' }}">Dashboard</a></li>
-                            <li>by function</li>
-                            <li><a href="{{ pathFor 'steckdosen' }}">Steckdosen</a></li>
-                        </ul>
                         {{#each rittal}}
                         <div class="block full">
                             <!-- Default Style Title -->
