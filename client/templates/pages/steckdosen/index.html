@@ -1,0 +1,25 @@
+<template name="hwSteckdosenPage">
+  <h2>Steckdosenleisten</h2>
+  {{#each rittal}}
+    <div class="block full">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{name}}</h3>
+        </div>
+        <div class="panel-body row">
+          {{#each plugs}}
+            {{#if name}}
+            <div class="col-sm-2">
+              <div class="block-section text-center">
+                <h4>{{#if name}}{{name}}{{else}}unused{{/if}}</h4>
+                <button leiste="{{leiste_id}}" plug="{{plug_id}}" class="plug_on btn {{#if status}} btn-success {{else}} btn-default {{/if}}">ON</button>
+                <button leiste="{{leiste_id}}" plug="{{plug_id}}" class="plug_off btn {{#unless status}} btn-danger {{else}} btn-default {{/unless}}">OFF</button>
+              </div>
+            </div>
+            {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</template>
