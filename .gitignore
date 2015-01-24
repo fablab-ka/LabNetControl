@@ -1,7 +1,7 @@
 public/css
 public/js
 public/img
-packages
+packages/
 sftp-config.json
 
 # Logs
