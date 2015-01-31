@@ -7,13 +7,13 @@
           <h3 class="panel-title">{{name}}</h3>
         </div>
         <div class="panel-body row">
-          {{#each plugs}}
-            {{#if name}}
+          {{#each arrayify plugs}}
+            {{#if state.user_switchable}}
             <div class="col-sm-2">
               <div class="block-section text-center">
                 <h4>{{#if name}}{{name}}{{else}}unused{{/if}}</h4>
-                <button leiste="{{leiste_id}}" plug="{{plug_id}}" class="plug_on btn {{#if status}} btn-success {{else}} btn-default {{/if}}">ON</button>
-                <button leiste="{{leiste_id}}" plug="{{plug_id}}" class="plug_off btn {{#unless status}} btn-danger {{else}} btn-default {{/unless}}">OFF</button>
+                <button leiste="{{../_id}}" plug="{{key}}" class="plug_on btn {{#if state.current}} btn-success {{else}} btn-default {{/if}}">ON</button>
+                <button leiste="{{../_id}}" plug="{{key}}" class="plug_off btn {{#unless state.current}} btn-danger {{else}} btn-default {{/unless}}">OFF</button>
               </div>
             </div>
             {{/if}}
