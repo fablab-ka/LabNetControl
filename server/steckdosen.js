@@ -114,6 +114,11 @@ Meteor.methods({
     }
 
     throw new Meteor.Error(504, "The Rittal PDU didnt answer");
+  },
+
+  'deleteSocket': function(id) {
+    var data = mcRittal.remove({_id: id});
+    return data;
   }
 });
 

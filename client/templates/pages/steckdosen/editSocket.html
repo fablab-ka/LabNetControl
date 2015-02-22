@@ -1,5 +1,5 @@
 <template name="editSocketModal">
-  {{#modalWrapper id="editSocketModal" title=modal_title }}
+  {{#modalWrapper id="editSocketModal" title=modal_title_edit }}
     <form>
       <div class="modal-body">
         <input type="hidden" class="socket-id" value="{{socket._id}}">
@@ -14,7 +14,19 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger delete">Delete</button>
         <button type="button" class="btn btn-primary save">Save changes</button>
+      </div>
+    </form>
+  {{/modalWrapper}}
+  {{#modalWrapper id="deleteSocketModal" title=modal_title_del }}
+    <form>
+      <div class="modal-body">
+        This action can not be undone! All socket specific configuration will be lost!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger delete-confirmation">Yes</button>
       </div>
     </form>
   {{/modalWrapper}}

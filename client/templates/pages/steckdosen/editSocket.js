@@ -3,8 +3,11 @@ Template.editSocketModal.helpers({
     var id = Session.get("editSocket");
     return mcRittal.findOne({_id: id});
   },
-  modal_title: function() {
+  modal_title_edit: function() {
     return "Edit Socket " + Session.get("editSocket");
+  },
+  modal_title_del: function() {
+    return "Delete Socket " + Session.get("editSocket");
   }
 })
 
@@ -23,6 +26,23 @@ Template.editSocketModal.events({
     });
 
     $("#editSocketModal").modal('hide')
+  },
+  'click button.delete': function(event, template) {
+    $("#editSocketModal").modal('hide');
+    $("#deleteSocketModal").modal('show');
+  },
+  'click button.delete-confirmation': function(event, template) {
+    var id = Session.get("editSocket");
+
+    Meteor.call("deleteSocket", id, function(error,data) {
+      if(error) {
+        Flash.danger(error);
+      } else {
+        Flash.success("Socket " + id + " deleted!")
+      }
+    });
+
+    $("#deleteSocketModal").modal('hide');
   }
 })
 
