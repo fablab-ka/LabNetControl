@@ -92,6 +92,8 @@ Meteor.methods({
   'updateSocket': function(id, name, description) {
     if( !_.isString(name) )
       throw new Meteor.Error(400, "Socket name should be a string");
+    if( !_.isString(description) )
+      throw new Meteor.Error(400, "Socket description should be a string");
     if( name.length == 0 )
       throw new Meteor.Error(400, "Socket name can't be empty");
     if( name.length > 10 )
@@ -119,6 +121,30 @@ Meteor.methods({
   'deleteSocket': function(id) {
     var data = mcRittal.remove({_id: id});
     return data;
+  },
+
+  'updatePlug': function(socket_id, plug) {
+    var socket = mcRittal.findOne({_id: socket_id.toString()});
+    
+    if ( !socket )
+      throw new Meteor.Error(404, "The Socket is not initialized");
+    if ( socket.plugs[plug.id] == undefined )
+      throw new Meteor.Error(400, "Invalid value for plug id");
+    if ( !_.isString(plug.name) )
+      throw new Meteor.Error(400, "Plug name must be a string");
+    if ( !_.isBoolean( plug.state_user_switchable ) )
+      throw new Meteor.Error(400, "Plug user switchable must be a boolean");
+    if ( !_.isBoolean( plug.state_default ) )
+      throw new Meteor.Error(400, "Plug default state must be a boolean");
+    if ( !_.isBoolean( plug.state_toggle_on_lab_open ) )
+      throw new Meteor.Error(400, "Plug toggle on lab open must be a boolean");
+
+    socket.plugs[plug.id].name = plug.name
+    socket.plugs[plug.id].state.user_switchable = plug.state_user_switchable
+    socket.plugs[plug.id].state.default = plug.state_default
+    socket.plugs[plug.id].state.toggle_on_lab_open = plug.state_toggle_on_lab_open
+
+    return mcRittal.update(socket._id, {$set: _.omit(socket, "_id")});
   }
 });
 

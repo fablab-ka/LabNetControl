@@ -48,7 +48,8 @@ Template.editSocketModal.events({
 
 Template.editSocketButton.events({
   'click .edit-socket': function(event, template) {
-    Session.set("editSocket", event.target.id);
+    var socket_id = $(event.target).attr('socket_id');
+    Session.set("editSocket", socket_id);
     $("#editSocketModal").modal('show')
   }
 })

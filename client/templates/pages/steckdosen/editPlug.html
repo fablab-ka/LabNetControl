@@ -1,0 +1,43 @@
+<template name="editPlugModal">
+  {{#modalWrapper id="editPlugModal" title=modal_title }}
+    <form>
+      <div class="modal-body">
+        <input type="hidden" class="socket-id" value="{{socket._id}}">
+        <input type="hidden" class="plug-id" value="{{plug.id}}">
+        <div class="form-group">
+          <label class="control-label">Plug name</label>
+          <input type="text" class="form-control plug-name" value="{{plug.name}}">
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" class="plug-state-user_switchable" checked="{{plug.state.user_switchable}}"> User switchable
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" class="plug-state-default" checked="{{plug.state.default}}"> Default on
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" class="plug-state-toggle_on_lab_open" checked="{{plug.state.toggle_on_lab_open}}"> Toggle on lab open
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save">Save changes</button>
+      </div>
+    </form>
+  {{/modalWrapper}}
+</template>
+
+<template name="editPlugButton">
+  <button type="button" class="edit-plug btn glyphicon glyphicon-pencil" socket_id="{{socket_id}}" plug_id="{{plug_id}}"></button>
+</template>
