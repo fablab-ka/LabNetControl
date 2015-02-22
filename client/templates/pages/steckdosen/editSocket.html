@@ -1,0 +1,25 @@
+<template name="editSocketModal">
+  {{#modalWrapper id="editSocketModal" title=modal_title }}
+    <form>
+      <div class="modal-body">
+        <input type="hidden" class="socket-id" value="{{socket._id}}">
+        <div class="form-group">
+          <label class="control-label">Socket name</label>
+          <input type="text" class="form-control socket-name" value="{{socket.name}}">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Socket description</label>
+          <textarea class="form-control socket-description">{{socket.description}}</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save">Save changes</button>
+      </div>
+    </form>
+  {{/modalWrapper}}
+</template>
+
+<template name="editSocketButton">
+  <button type="button" class="edit-socket btn glyphicon glyphicon-pencil" id="{{id}}"></button>
+</template>

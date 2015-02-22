@@ -1,0 +1,20 @@
+<template name="addSocketModal">
+  {{#modalWrapper id="addSocketModal" title="Add new socket" }}
+    <form>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="control-label">Socket id</label>
+          <input type="number" class="form-control socket-id" value="1">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary add">Add</button>
+      </div>
+    </form>
+  {{/modalWrapper}}
+</template>
+
+<template name="addSocketButton">
+  <button type="button" class="add-socket btn btn-primary" data-toggle="modal" data-target="#addSocketModal">Add new socket</button>
+</template>

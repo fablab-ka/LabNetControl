@@ -59,13 +59,16 @@ Meteor.methods({
       mcLog.insert({type: "steckdosen",message: "Socket:" + socket_id + " | Plug: " + plug ,date: (new Date())});
       socket.plugs[plug].state.current = state;
       socket.last_update = Date.now();
-      mcRittal.update(socket._id, {$set: _.omit(socket, "_id")});
+      mcRittal.update(socket._id, {$set: _.omit(socket, "_id")})
+      return socket;
     }
+    throw new Meteor.Error(504, "The Rittal PDU didnt answer");
   },
+
   'initSocket': function(socket_id) {
     var socket = mcRittal.findOne({_id: socket_id.toString()});
     if (socket) {
-      throw new Meteor.Error(404, "The Socket is already initialized");
+      throw new Meteor.Error(400, "The Socket is already initialized");
     }
 
     var data = rittal_getSocket(socket_id);
@@ -83,7 +86,34 @@ Meteor.methods({
       return temp;
     }
 
-    throw new Meteor.Error(404, "The Rittal PDU didnt answer");
+    throw new Meteor.Error(504, "The Rittal PDU didnt answer");
+  },
+
+  'updateSocket': function(id, name, description) {
+    if( !_.isString(name) )
+      throw new Meteor.Error(400, "Socket name should be a string");
+    if( name.length == 0 )
+      throw new Meteor.Error(400, "Socket name can't be empty");
+    if( name.length > 10 )
+      throw new Meteor.Error(400, "Socket name can't be longer then 10 characters");
+
+    var socket = mcRittal.findOne({_id: id});
+    if (!socket) {
+      throw new Meteor.Error(404, "The Socket is not initialized");
+    }
+
+    var plug_states = {};
+    _.each(socket.plugs, function(value, key) {
+      return plug_states[key] = value.state.current;
+    });
+
+    var data = rittal_setSocket({"name": socket.name, "id": socket._id, "plug_states": plug_states});
+    if(data){
+      mcRittal.update(id, {$set: {name: name, description: description}});
+      return "Socket name succesful updated"
+    }
+
+    throw new Meteor.Error(504, "The Rittal PDU didnt answer");
   }
 });
 
