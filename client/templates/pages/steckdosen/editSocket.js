@@ -14,7 +14,13 @@ Template.editSocketModal.events({
     var name = template.$('.socket-name').val();
     var description = template.$('.socket-description').val();
 
-    Meteor.call("updateSocket", id, name, description);
+    Meteor.call("updateSocket", id, name, description, function(error,data) {
+      if(error) {
+        Flash.danger(error);
+      } else {
+        Flash.success("Socket " + id + " updated!")
+      }
+    });
 
     $("#editSocketModal").modal('hide')
   }
