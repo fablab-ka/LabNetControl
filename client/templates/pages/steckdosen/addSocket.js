@@ -1,5 +1,5 @@
 Template.addSocketModal.events({
-  'click button.add': function(event, template) {
+  'submit': function(event, template) {
     var id = template.$('.socket-id').val();
 
     Meteor.call("initSocket", id, function(error,data) {
@@ -11,5 +11,6 @@ Template.addSocketModal.events({
     });
 
     $("#addSocketModal").modal('hide')
+    return false;
   }
 })

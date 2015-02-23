@@ -9,7 +9,7 @@ Template.editPlugModal.helpers({
     var plug_id = Session.get("editPlug");
     var socket = mcRittal.findOne({_id: socket_id});
 
-    if( socket ) {
+    if( socket && socket.plugs[plug_id] !== undefined ) {
       var plug = socket.plugs[plug_id];
       plug.id = plug_id;
 
@@ -25,7 +25,7 @@ Template.editPlugModal.helpers({
 })
 
 Template.editPlugModal.events({
-  'click button.save': function(event, template) {
+  'submit': function(event, template) {
     var socket_id = template.$('.socket-id').val();
 
     var plug = {};
@@ -44,6 +44,7 @@ Template.editPlugModal.events({
     });
 
     $("#editPlugModal").modal('hide')
+    return false;
   }
 })
 

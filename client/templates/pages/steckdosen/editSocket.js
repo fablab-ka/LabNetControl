@@ -12,7 +12,7 @@ Template.editSocketModal.helpers({
 })
 
 Template.editSocketModal.events({
-  'click button.save': function(event, template) {
+  'submit': function(event, template) {
     var id = template.$('.socket-id').val();
     var name = template.$('.socket-name').val();
     var description = template.$('.socket-description').val();
@@ -25,7 +25,8 @@ Template.editSocketModal.events({
       }
     });
 
-    $("#editSocketModal").modal('hide')
+    $("#editSocketModal").modal('hide');
+    return false;
   },
   'click button.delete': function(event, template) {
     $("#editSocketModal").modal('hide');
@@ -43,6 +44,7 @@ Template.editSocketModal.events({
     });
 
     $("#deleteSocketModal").modal('hide');
+    return false;
   }
 })
 
