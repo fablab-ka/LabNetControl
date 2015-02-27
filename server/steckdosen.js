@@ -159,6 +159,30 @@ Meteor.methods({
     socket.plugs[plug.id].state.toggle_on_lab_open = plug.state_toggle_on_lab_open
 
     return mcRittal.update(socket._id, {$set: _.omit(socket, "_id")});
+  },
+
+  'setPlugsToDefault': function() {
+    var sockets = mcRittal.find().fetch();
+
+    _.each(sockets, function(socket) {
+      _.each(socket.plugs, function(plug, plug_id) {
+        if ( plug.state.current != plug.state.default ) {
+          Meteor.call('setPlug', socket._id, plug_id, plug.state.default);
+        }
+      });
+    });
+  },
+
+  'setPlugsToLabOpen': function() {
+    var sockets = mcRittal.find().fetch();
+
+    _.each(sockets, function(socket) {
+      _.each(socket.plugs, function(plug, plug_id) {
+        if ( plug.state.current === plug.state.default && plug.state.toggle_on_lab_open ) {
+          Meteor.call('setPlug', socket._id, plug_id, !plug.state.default);
+        }
+      });
+    });
   }
 });
 
