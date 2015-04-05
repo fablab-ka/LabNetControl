@@ -1,3 +1,5 @@
+Roles.addRolesIfMissing(["socket-add", "socket-edit", "socket-remove"]);
+
 var rittal_pdu = Meteor.npmRequire("rittal_pdu");
 var rittal_init = Meteor.wrapAsync(rittal_pdu.init);
 var rittal_getSocket = Meteor.wrapAsyncWithRetry(rittal_pdu.getSocket);
@@ -66,6 +68,9 @@ Meteor.methods({
   },
 
   'initSocket': function(socket_id) {
+    if ( !Roles.userIsInRole(Meteor.user(), "socket-add") )
+      throw new Meteor.Error(403, "Not authorized!");
+
     var socket = mcRittal.findOne({_id: socket_id.toString()});
     if (socket) {
       throw new Meteor.Error(400, "The Socket is already initialized");
@@ -90,6 +95,8 @@ Meteor.methods({
   },
 
   'updateSocket': function(id, name, description) {
+    if ( !Roles.userIsInRole(Meteor.user(), "socket-edit") )
+      throw new Meteor.Error(403, "Not authorized!");
     if( !_.isString(name) )
       throw new Meteor.Error(400, "Socket name should be a string");
     if( !_.isString(description) )
@@ -119,11 +126,18 @@ Meteor.methods({
   },
 
   'deleteSocket': function(id) {
+    if ( !Roles.userIsInRole(Meteor.user(), "socket-remove") )
+      throw new Meteor.Error(403, "Not authorized!");
+
     var data = mcRittal.remove({_id: id});
+
     return data;
   },
 
   'updatePlug': function(socket_id, plug) {
+    if ( !Roles.userIsInRole(Meteor.user(), "socket-edit") )
+      throw new Meteor.Error(403, "Not authorized!");
+
     var socket = mcRittal.findOne({_id: socket_id.toString()});
     
     if ( !socket )
@@ -145,6 +159,30 @@ Meteor.methods({
     socket.plugs[plug.id].state.toggle_on_lab_open = plug.state_toggle_on_lab_open
 
     return mcRittal.update(socket._id, {$set: _.omit(socket, "_id")});
+  },
+
+  'setPlugsToDefault': function() {
+    var sockets = mcRittal.find().fetch();
+
+    _.each(sockets, function(socket) {
+      _.each(socket.plugs, function(plug, plug_id) {
+        if ( plug.state.current != plug.state.default ) {
+          Meteor.call('setPlug', socket._id, plug_id, plug.state.default);
+        }
+      });
+    });
+  },
+
+  'setPlugsToLabOpen': function() {
+    var sockets = mcRittal.find().fetch();
+
+    _.each(sockets, function(socket) {
+      _.each(socket.plugs, function(plug, plug_id) {
+        if ( plug.state.current === plug.state.default && plug.state.toggle_on_lab_open ) {
+          Meteor.call('setPlug', socket._id, plug_id, !plug.state.default);
+        }
+      });
+    });
   }
 });
 

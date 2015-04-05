@@ -14,7 +14,16 @@
         <ul class="nav navbar-nav">
           {{navLink 'Steckdosen' 'hwSteckdosenPage'}}
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {{> loginButtons }}
+        </ul>
       </nav>
     </div>
   </header>
+</template>
+
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+    {{#if isInRole 'admin'}}
+      <a class="btn btn-default btn-block" href="{{pathFor 'settingsPage'}}">Settings</a>
+    {{/if}}
 </template>
