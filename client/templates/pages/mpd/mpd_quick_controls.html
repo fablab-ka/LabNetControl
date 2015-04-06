@@ -1,4 +1,6 @@
 <template name="mpdQuickControls">
+  <p class="navbar-text small text-right" style="margin-top: 5px; margin-bottom: 5px;"> {{#with mpd.song}} {{Artist}} <br /> <b>{{Title}}</b> {{/with}}</p>
+
   {{#if is mpd.state "play"}}
     <button type="button" class="btn btn-warning glyphicon glyphicon-pause navbar-btn mpd pause"></button>
   {{/if}}
@@ -8,6 +10,7 @@
   {{#if is mpd.state "stop"}}
     <button type="button" class="btn btn-disabled glyphicon glyphicon-play navbar-btn"></button>
   {{/if}}
+
 
   <button type="button" class="btn btn-default glyphicon glyphicon-minus navbar-btn mpd volume decrease"></button>
   <button type="button" class="btn btn-default glyphicon glyphicon-plus navbar-btn mpd volume increase"></button>
