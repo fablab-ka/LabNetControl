@@ -1,0 +1,16 @@
+<template name="mpdQuickControls">
+  {{#if is mpd.state "play"}}
+    <button type="button" class="btn btn-warning glyphicon glyphicon-pause navbar-btn mpd pause"></button>
+  {{/if}}
+  {{#if is mpd.state "pause"}}
+    <button type="button" class="btn btn-success glyphicon glyphicon-play navbar-btn mpd unpause"></button>
+  {{/if}}
+  {{#if is mpd.state "stop"}}
+    <button type="button" class="btn btn-disabled glyphicon glyphicon-play navbar-btn"></button>
+  {{/if}}
+
+  <button type="button" class="btn btn-default glyphicon glyphicon-minus navbar-btn mpd volume decrease"></button>
+  <button type="button" class="btn btn-default glyphicon glyphicon-plus navbar-btn mpd volume increase"></button>
+  <button type="button" class="btn btn-default glyphicon glyphicon-step-backward navbar-btn mpd previous"></button>
+  <button type="button" class="btn btn-default glyphicon glyphicon-step-forward navbar-btn mpd next"></button>
+</template>

@@ -1,7 +1,8 @@
 <template name="layout">
   {{> navbar}}
-  <div class="container" role="main" style="margin-top:70px">
+  <div class="container" role="main" style="margin:70px auto">
     <div>{{flash}}</div>
     {{> yield}}
   </div>
+  {{> quickControls}}
 </template>
