@@ -36,13 +36,19 @@ var mpdUpdateStatus = function() {
   var song_info = mpdAsync("playlistinfo " + mpd_info.song);
   if(song_info) {
 
+    //creepy actions to get some decent song informations
     if( !song_info.Artist ) {
-      var temp = song_info.Title.split(" - ");
-      if( temp.length === 2 ) {
-        song_info.Artist = temp[0];
-        song_info.Title = temp[1];
+      if( song_info.Title ) {
+        var temp = song_info.Title.split(" - ");
+        if( temp.length === 2 ) {
+          song_info.Artist = temp[0];
+          song_info.Title = temp[1];
+        } else {
+          song_info.Artist = "Unknown";
+        }
       } else {
         song_info.Artist = "Unknown";
+        song_info.Title = song_info.file.split("/").pop();
       }
     }
 
