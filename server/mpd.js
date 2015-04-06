@@ -35,6 +35,17 @@ var mpdUpdateStatus = function() {
 
   var song_info = mpdAsync("playlistinfo " + mpd_info.song);
   if(song_info) {
+
+    if( !song_info.Artist ) {
+      var temp = song_info.Title.split(" - ");
+      if( temp.length === 2 ) {
+        song_info.Artist = temp[0];
+        song_info.Title = temp[1];
+      } else {
+        song_info.Artist = "Unknown";
+      }
+    }
+
     musicdb.update({_id: "mpd"}, {$set: {
       song: song_info
     }});
