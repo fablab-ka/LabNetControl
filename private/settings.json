@@ -1,0 +1,7 @@
+{
+  "public": {},
+  "mpd": {
+    "host": "labnet.lab.flka.de",
+    "port": "6600"
+  }
+}

@@ -35,7 +35,7 @@
                   <button leiste="{{../_id}}" plug="{{key}}" class="plug_on btn {{#if state.current}} btn-success {{else}} btn-default {{/if}}">ON</button>
                   <button leiste="{{../_id}}" plug="{{key}}" class="plug_off btn {{#unless state.current}} btn-danger {{else}} btn-default {{/unless}}">OFF</button>
                 {{else}}
-                  <button class="btn {{#unless state.current}} btn-danger {{else}} btn-success {{/unless}} disabled">disabled</button>
+                  <button class="btn {{#unless state.current}} btn-danger {{else}} btn-success {{/unless}} disabled">locked</button>
                 {{/if}}
               </div>
             </div>
