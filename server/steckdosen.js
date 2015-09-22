@@ -168,6 +168,7 @@ Meteor.methods({
       _.each(socket.plugs, function(plug, plug_id) {
         if ( plug.state.current != plug.state.default ) {
           Meteor.call('setPlug', socket._id, plug_id, plug.state.default);
+          Meteor.sleep(100);
         }
       });
     });
@@ -180,6 +181,7 @@ Meteor.methods({
       _.each(socket.plugs, function(plug, plug_id) {
         if ( plug.state.current === plug.state.default && plug.state.toggle_on_lab_open ) {
           Meteor.call('setPlug', socket._id, plug_id, !plug.state.default);
+          Meteor.sleep(100);
         }
       });
     });
