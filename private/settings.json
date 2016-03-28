@@ -1,7 +1,7 @@
 {
   "public": {},
   "mpd": {
-    "host": "labnet.lab.flka.de",
+    "host": "192.168.1.6",
     "port": "6600"
   }
 }
