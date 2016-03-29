@@ -35,7 +35,7 @@ var rittal_plug = function() {
 }
 
 Meteor.startup(function () {
-  rittal_init("/dev/ttyUSB0");
+  rittal_init(Meteor.settings.rittal.tty);
 });
 Meteor.publish("rittal", function (){
   return mcRittal.find({});
