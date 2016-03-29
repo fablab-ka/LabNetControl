@@ -1,5 +1,8 @@
 var Future = Npm.require('fibers/future')
 
+Meteor.startup(function () {
+	musicdb.upsert({_id: "mpd"}, {$set: {connected: false}});
+});
 Meteor.publish("mpd", function (){
   return musicdb.find({});
 });
@@ -69,6 +72,7 @@ mpdclient.on('end', Meteor.bindEnvironment(function() {
 }));
 
 mpdclient.on('system', Meteor.bindEnvironment(function() {
+  musicdb.upsert({_id: "mpd"}, {$set: {connected: true}});
   mpdUpdateStatus();
 }));
 
