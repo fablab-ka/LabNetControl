@@ -26,3 +26,41 @@ It will be automaticly installed and readded.
 $ meteor shell
 Roles.addUsersToRoles(Meteor.users.findOne({username: "myusername"}),"admin")
 ````
+
+### Configure autostart (systemd)
+
+* add user 'useradd -mrU labnet-meteor'
+* add systemd file
+
+```` bash /etc/systemd/system/labnet-meteor.service
+[Service]
+WorkingDirectory=/home/labnet-meteor/LabNetControl
+ExecStart=/usr/local/bin/meteor --settings private/settings.json --port 3000
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=labnet-meteor
+User=labnet-meteor
+Group=labnet-meteor
+Environment=NODE_ENV=production
+Environment=MONGO_URL=mongodb://localhost:27017/meteor
+
+[Install]
+WantedBy=multi-user.target
+````
+
+### Configure Proxy (Apache)
+
+```` bash apache-site.conf
+ProxyRequests Off
+ProxyPreserveHost On
+
+# upgrade websocket connections, requires proxy_wstunnel
+RewriteEngine on
+RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC]
+RewriteCond %{HTTP:CONNECTION} ^Upgrade$ [NC]
+RewriteRule .* ws://localhost:3000%{REQUEST_URI} [P]
+
+ProxyPass / http://localhost:3000/ Retry=0
+ProxyPassReverse / http://localhost:3000/
+````
