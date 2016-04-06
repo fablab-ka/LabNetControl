@@ -32,7 +32,10 @@ Roles.addUsersToRoles(Meteor.users.findOne({username: "myusername"}),"admin")
 * add user 'useradd -mrU labnet-meteor'
 * add systemd file
 
-```` bash /etc/systemd/system/labnet-meteor.service
+
+```` bash
+# /etc/systemd/system/labnet-meteor.service
+
 [Service]
 WorkingDirectory=/home/labnet-meteor/LabNetControl
 ExecStart=/usr/local/bin/meteor --settings private/settings.json --port 3000
@@ -51,7 +54,9 @@ WantedBy=multi-user.target
 
 ### Configure Proxy (Apache)
 
-```` bash apache-site.conf
+```` bash
+# apache-site.conf
+
 ProxyRequests Off
 ProxyPreserveHost On
 
