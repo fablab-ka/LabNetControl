@@ -8,11 +8,13 @@ Template.hwSteckdosenPage.helpers({
 
 Template.hwSteckdosenPage.events({
   'click .plug_on': function(e){
+    alert("plug on");
     var leiste = $(e.currentTarget).attr("leiste");
     var plug = $(e.currentTarget).attr("plug");
     Meteor.call('setPlug', leiste, plug, true);
   },
   'click .plug_off': function(e){
+    alert("plug off");
     var leiste = $(e.currentTarget).attr("leiste");
     var plug = $(e.currentTarget).attr("plug");
     Meteor.call('setPlug', leiste, plug, false);
