@@ -54,6 +54,11 @@ Meteor.methods({
     _.each(socket.plugs, function(value, key) {
       return plug_states[key] = value.state.current;
     });
+
+    if(!plug_states[plug].user_switchable){
+      return;
+    };
+
     plug_states[plug] = state;
 
     var data = rittal_setSocket({"name": socket.name, "id": socket_id, "plug_states": plug_states});
@@ -139,7 +144,7 @@ Meteor.methods({
       throw new Meteor.Error(403, "Not authorized!");
 
     var socket = mcRittal.findOne({_id: socket_id.toString()});
-    
+
     if ( !socket )
       throw new Meteor.Error(404, "The Socket is not initialized");
     if ( socket.plugs[plug.id] == undefined )
