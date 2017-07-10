@@ -17,5 +17,11 @@ Template.hwSteckdosenPage.events({
     var plug = $(e.currentTarget).attr("plug");
     Meteor.call('setPlug', leiste, plug, false);
   }
+  'click .plug_sw': function(e){
+    var leiste = $(e.currentTarget).attr("leiste");
+    var plug = $(e.currentTarget).attr("plug");
+    var state = plug.state.current;
+    Meteor.call('setPlug', leiste, plug, !state);
+  }
 
 });
