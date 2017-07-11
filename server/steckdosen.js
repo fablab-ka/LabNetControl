@@ -55,10 +55,6 @@ Meteor.methods({
       return plug_states[key] = value.state.current;
     });
 
-    if(!plug_states[plug].user_switchable){
-      return;
-    };
-
     plug_states[plug] = state;
 
     var data = rittal_setSocket({"name": socket.name, "id": socket_id, "plug_states": plug_states});

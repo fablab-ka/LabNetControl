@@ -1,53 +1,55 @@
 <template name="hwSteckdosenPage">
-  <h2>Steckdosenleisten</h2>
+	<h2>Steckdosenleisten</h2>
 
-  {{#if isInRole 'socket-add'}}
-    {{>addSocketModal}}
-  {{/if}}
-  {{#if isInRole 'socket-edit'}}
-    {{>editSocketModal}}
-    {{>editPlugModal}}
-  {{/if}}
+	{{#if isInRole 'socket-add'}}
+		{{>addSocketModal}}
+	{{/if}}
+	{{#if isInRole 'socket-edit'}}
+		{{>editSocketModal}}
+		{{>editPlugModal}}
+	{{/if}}
 
-  {{#each rittal}}
-    <div class="block full">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            {{name}}
-            {{#if description}} ({{description}}) {{/if}}
-            {{#if isInRole 'socket-edit'}}
-              {{>editSocketButton socket_id=_id}}
-            {{/if}}
-          </h3>
-        </div>
-        <div class="panel-body row">
-          {{#each arrayify plugs}}
-            <div class="col-xs-6 col-sm-4 col-lg-2">
-              <div class="block-section text-center">
-                <!--<h4>-->
-                  <!--{{#if name}}{{name}}{{else}}unused{{/if}}-->
-                  <!--{{#if isInRole 'socket-edit'}}-->
-                    <!--{{>editPlugButton socket_id=../_id plug_id=key}}-->
-                  <!--{{/if}}-->
-                <!--</h4>-->
-                <!--{{#if state.user_switchable}}-->
-				  <button style="height:100%;width:100%;padding:2px;margin:2px"  leiste="{{../_id}}" plug="{{key}}" class="{{#unless state.user_switchable}} disabled {{/unless}}
-				   btn {{#if state.current}} btn-success plug_off {{else}} btn-danger plug_on {{/if}}"><h4>{{#if name}}{{name}}{{else}}unused{{/if}}</h4></button>
+	{{#each rittal}}
+	<div class="block full">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					{{name}}
+					{{#if description}} ({{description}}) {{/if}}
+					{{#if isInRole 'socket-edit'}}
+					{{>editSocketButton socket_id=_id}}
+					{{/if}}
+				</h3>
+			</div>
+			<div class="panel-body row">
+				{{#each arrayify plugs}}
+				<div class="col-xs-6 col-sm-4 col-lg-2">
+					<div class="block-section text-center">
+						<!--<h4>-->
+						<!--{{#if name}}{{name}}{{else}}unused{{/if}}-->
+						<!--{{#if isInRole 'socket-edit'}}-->
+						<!--{{>editPlugButton socket_id=../_id plug_id=key}}-->
+						<!--{{/if}}-->
+						<!--</h4>-->
+						<!--{{#if state.user_switchable}}-->
+						<button style="height:100%;width:100%;padding:2px;margin:2px" leiste="{{../_id}}" plug="{{key}}"
+								class="{{#unless state.user_switchable}} disabled {{/unless}}
+				   				btn {{#if state.current}} btn-success plug_off {{else}} btn-danger plug_on {{/if}}"><h4>{{#if
+							name}}{{name}}{{else}}unused{{/if}}</h4></button>
 
-                  <!--<button leiste="{{../_id}}" plug="{{key}}" class="plug_on btn {{#if state.current}} btn-success {{else}} btn-default {{/if}}">ON</button>-->
-                  <!--<button leiste="{{../_id}}" plug="{{key}}" class="plug_off btn {{#unless state.current}} btn-danger {{else}} btn-default {{/unless}}">OFF</button>-->
-                <!--{{else}}-->
-                  <!--<button class="btn {{#unless state.current}} btn-danger {{else}} btn-success {{/unless}} disabled">locked</button>-->
-                <!--{{/if}}-->
-              </div>
-            </div>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-  {{/each}}
-  {{#if isInRole 'socket-add'}}
-    {{>addSocketButton}}
-  {{/if}}
+						<!--<button leiste="{{../_id}}" plug="{{key}}" class="plug_on btn {{#if state.current}} btn-success {{else}} btn-default {{/if}}">ON</button>-->
+						<!--<button leiste="{{../_id}}" plug="{{key}}" class="plug_off btn {{#unless state.current}} btn-danger {{else}} btn-default {{/unless}}">OFF</button>-->
+						<!--{{else}}-->
+						<!--<button class="btn {{#unless state.current}} btn-danger {{else}} btn-success {{/unless}} disabled">locked</button>-->
+						<!--{{/if}}-->
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+	{{/each}}
+	{{#if isInRole 'socket-add'}}
+		{{>addSocketButton}}
+	{{/if}}
 </template>
