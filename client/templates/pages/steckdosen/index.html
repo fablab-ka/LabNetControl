@@ -24,8 +24,11 @@
 			<div class="panel-body row">
 				{{#each arrayify plugs}}
 				<div class="col-xs-6 col-sm-4 col-lg-2">
-					<div class="block-section text-center">
-						<button style="height:100%;width:100%;padding:2px;margin:2px" leiste="{{../_id}}" plug="{{key}}"
+					<div class="block-section text-center" style="width:16,66%">
+						{{#if isInRole 'socket-edit'}}
+                    		{{>editPlugButton socket_id=../_id plug_id=key}}
+                  		{{/if}}
+						<button style="width:100%;padding:2px;margin:2px" leiste="{{../_id}}" plug="{{key}}"
 								class="btn
 								{{#if state.user_switchable}}
 									{{#if state.current}}
