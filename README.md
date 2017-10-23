@@ -27,9 +27,10 @@ $ meteor shell
 Roles.addUsersToRoles(Meteor.users.findOne({username: "myusername"}),"admin")
 ````
 
-### Configure autostart (systemd)
+### Install as separate user (systemd)
 
 * add user 'useradd -mrU labnet-meteor'
+* install meteor as user `curl https://install.meteor.com/ | sh` (quit when they ask for sudo, we dont need ~/.meteor in our path)
 * add systemd file
 
 
@@ -38,7 +39,7 @@ Roles.addUsersToRoles(Meteor.users.findOne({username: "myusername"}),"admin")
 
 [Service]
 WorkingDirectory=/home/labnet-meteor/LabNetControl
-ExecStart=/usr/local/bin/meteor --settings private/settings.json --port 3000
+ExecStart=/home/labnet-meteor/.meteor/meteor --settings private/settings.json --port 3000
 Restart=always
 StandardOutput=syslog
 StandardError=syslog
